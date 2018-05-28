@@ -1,0 +1,41 @@
+<div class="container">
+  
+  <!-- Complete this markup for showing error upon unsuccessful login. -->
+  <p class="error" *ngIf="!authenticated && touched">Login credentials were incorrect!</p>
+
+  <!-- Complete this markup for showing the status bar correctly, 
+    depending on whether or not the user is authenticated. -->
+  <div class="status" *ngIf="authenticated">
+    <span>User ID: {{user.name}}</span>
+    <button (click)="testApi()">Test API</button>
+    <span id="friends"></span>
+    <button (click)="logout()">Logout</button>
+  </div>
+
+  <!-- Add markup for showing the login form if the user is not 
+    authenticated. -->
+
+  <form *ngIf="!authenticated"
+      (ngSubmit)="loginCredentials = validForm.value; login();
+      validForm.reset()"
+      #validForm="ngForm"
+    >
+    <input
+    name = "name"
+    placeholder="Username"
+    type="email"
+
+    ngModel
+    #userName="ngModel"
+    />
+
+    <input
+    name = "password"
+    placeholder="Password"
+    type="password"
+    ngModel
+    />
+
+    <button type="submit">Login</button>
+  </form>
+</div>
